@@ -3,28 +3,28 @@
   "WorkspaceRootPath": "D:\\Facultad\\SIM\\Practico\\Trabajos Practicos\\TP2 Demo Emilio\\TP-2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|D:\\Facultad\\SIM\\Practico\\Trabajos Practicos\\TP2 Demo Emilio\\TP-2\\formsdistros\\distroexponencial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|D:\\Facultad\\SIM\\Practico\\Trabajos Practicos\\TP2 Demo Emilio\\TP-2\\formsdistros\\distrouniforme.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|solutionrelative:formsdistros\\distrouniforme.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|d:\\facultad\\sim\\practico\\trabajos practicos\\tp2 demo emilio\\tp-2\\formsdistros\\distroexponencial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|solutionrelative:formsdistros\\distroexponencial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|d:\\facultad\\sim\\practico\\trabajos practicos\\tp2 demo emilio\\tp-2\\formsdistros\\distronormal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|solutionrelative:formsdistros\\distronormal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|D:\\Facultad\\SIM\\Practico\\Trabajos Practicos\\TP2 Demo Emilio\\TP-2\\formsdistros\\distronormal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|solutionrelative:formsdistros\\distronormal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|D:\\Facultad\\SIM\\Practico\\Trabajos Practicos\\TP2 Demo Emilio\\TP-2\\entidades\\funciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|solutionrelative:entidades\\funciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|D:\\Facultad\\SIM\\Practico\\Trabajos Practicos\\TP2 Demo Emilio\\TP-2\\formsdistros\\distrouniforme.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|solutionrelative:formsdistros\\distrouniforme.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|D:\\Facultad\\SIM\\Practico\\Trabajos Practicos\\TP2 Demo Emilio\\TP-2\\formsdistros\\distrouniforme.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|solutionrelative:formsdistros\\distrouniforme.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|D:\\Facultad\\SIM\\Practico\\Trabajos Practicos\\TP2 Demo Emilio\\TP-2\\formsdistros\\distronormal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|solutionrelative:formsdistros\\distronormal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|d:\\facultad\\sim\\practico\\trabajos practicos\\tp2 demo emilio\\tp-2\\entidades\\funciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|solutionrelative:entidades\\funciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|D:\\Facultad\\SIM\\Practico\\Trabajos Practicos\\TP2 Demo Emilio\\TP-2\\formsdistros\\distronormal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|solutionrelative:formsdistros\\distronormal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|D:\\Facultad\\SIM\\Practico\\Trabajos Practicos\\TP2 Demo Emilio\\TP-2\\formsdistros\\distroexponencial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -46,15 +46,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "Funciones.cs",
               "DocumentMoniker": "D:\\Facultad\\SIM\\Practico\\Trabajos Practicos\\TP2 Demo Emilio\\TP-2\\Entidades\\Funciones.cs",
               "RelativeDocumentMoniker": "Entidades\\Funciones.cs",
@@ -67,26 +67,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "DistroUniforme.cs",
               "DocumentMoniker": "D:\\Facultad\\SIM\\Practico\\Trabajos Practicos\\TP2 Demo Emilio\\TP-2\\FormsDistros\\DistroUniforme.cs",
               "RelativeDocumentMoniker": "FormsDistros\\DistroUniforme.cs",
               "ToolTip": "D:\\Facultad\\SIM\\Practico\\Trabajos Practicos\\TP2 Demo Emilio\\TP-2\\FormsDistros\\DistroUniforme.cs",
               "RelativeToolTip": "FormsDistros\\DistroUniforme.cs",
-              "ViewState": "AQIAADkAAAAAAAAAAAAuwEsAAAABAAAA",
+              "ViewState": "AQIAAEQAAAAAAAAAAAAuwEcAAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-01T23:58:27.257Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "DistroExponencial.cs",
               "DocumentMoniker": "D:\\Facultad\\SIM\\Practico\\Trabajos Practicos\\TP2 Demo Emilio\\TP-2\\FormsDistros\\DistroExponencial.cs",
               "RelativeDocumentMoniker": "FormsDistros\\DistroExponencial.cs",
               "ToolTip": "D:\\Facultad\\SIM\\Practico\\Trabajos Practicos\\TP2 Demo Emilio\\TP-2\\FormsDistros\\DistroExponencial.cs",
               "RelativeToolTip": "FormsDistros\\DistroExponencial.cs",
-              "ViewState": "AQIAAFwAAAAAAAAAAAAwwHYAAAARAAAA",
+              "ViewState": "AQIAAFAAAAAAAAAAAAAwwHYAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-01T23:46:51.255Z",
               "EditorCaption": ""
@@ -105,19 +105,18 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "DistroNormal.cs [Dise\u00F1o]",
               "DocumentMoniker": "D:\\Facultad\\SIM\\Practico\\Trabajos Practicos\\TP2 Demo Emilio\\TP-2\\FormsDistros\\DistroNormal.cs",
               "RelativeDocumentMoniker": "FormsDistros\\DistroNormal.cs",
               "ToolTip": "D:\\Facultad\\SIM\\Practico\\Trabajos Practicos\\TP2 Demo Emilio\\TP-2\\FormsDistros\\DistroNormal.cs [Dise\u00F1o]",
               "RelativeToolTip": "FormsDistros\\DistroNormal.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-01T23:34:01.324Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2024-04-01T23:34:01.324Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "DistroNormal.cs",
               "DocumentMoniker": "D:\\Facultad\\SIM\\Practico\\Trabajos Practicos\\TP2 Demo Emilio\\TP-2\\FormsDistros\\DistroNormal.cs",
               "RelativeDocumentMoniker": "FormsDistros\\DistroNormal.cs",
@@ -125,8 +124,7 @@
               "RelativeToolTip": "FormsDistros\\DistroNormal.cs",
               "ViewState": "AQIAADoAAAAAAAAAAAAmwEwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-01T23:58:42.846Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-01T23:58:42.846Z"
             },
             {
               "$type": "Document",
@@ -137,8 +135,7 @@
               "ToolTip": "D:\\Facultad\\SIM\\Practico\\Trabajos Practicos\\TP2 Demo Emilio\\TP-2\\FormsDistros\\DistroExponencial.cs [Dise\u00F1o]",
               "RelativeToolTip": "FormsDistros\\DistroExponencial.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-01T23:33:35.007Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2024-04-01T23:33:35.007Z"
             },
             {
               "$type": "Document",

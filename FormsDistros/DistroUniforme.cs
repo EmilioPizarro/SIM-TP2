@@ -71,6 +71,53 @@ namespace TP_2
         {
             //limpio el datagrid cada vez que genero una serie
             dtgSerie.Rows.Clear();
+
+            //Valido espacios vacios o en blanco en la muestra 
+            if (string.IsNullOrWhiteSpace(valorMuestra.Text))
+            {
+                MessageBox.Show(" ¡El valor de la muestra no puede quedar Vacio!");
+                return;
+            }
+
+            else
+            {
+                if (string.IsNullOrWhiteSpace(limInferior.Text) && string.IsNullOrWhiteSpace(limSuperior.Text))
+                {
+                    MessageBox.Show("¡Ambos limites deben llevar valores!");
+                    return;
+                }
+                else
+                {
+                    double inferior = int.Parse(limInferior.Text);
+                    double superior = int.Parse(limSuperior.Text);
+                    if(inferior> superior)
+                    {
+                        MessageBox.Show("¡El limite Inferior no puede ser mayor que el limite Superior!");
+                        limInferior.Text = " ";
+                        limSuperior.Text = " ";
+                        return;
+                    }
+                    else
+                    {
+                        Random rnd = new Random();
+
+                        for (int i = 0; i < int.Parse(valorMuestra.Text); i++)
+                        {
+                            double pseudo = rnd.NextDouble();
+                            pseudo = Math.Round(pseudo, 4);
+                            double x = pseudo * (superior - inferior) + inferior;
+                            x = Math.Round(x, 4);
+                            dtgSerie.Rows.Add((i + 1), x);
+                        }
+
+                    }
+
+
+
+                }
+            }
+            
+            
         }
     }
 }
