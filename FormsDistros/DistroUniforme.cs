@@ -66,5 +66,11 @@ namespace TP_2
             formPrincipal.Show();
             this.Close();
         }
+
+        private void btnGenerarSerie_Click(object sender, EventArgs e)
+        {
+            //limpio el datagrid cada vez que genero una serie
+            dtgSerie.Rows.Clear();
+        }
     }
 }

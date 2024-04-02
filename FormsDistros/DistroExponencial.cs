@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TP_2.Entidades;
 
 namespace TP_2
 {
@@ -22,6 +23,8 @@ namespace TP_2
         {
 
         }
+
+       
 
         private void valorMuestra_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -71,6 +74,52 @@ namespace TP_2
             Principal formPrincipal = new Principal();
             formPrincipal.Show();
             this.Close();
+        }
+
+        private void btnGenerarSerie_Click(object sender, EventArgs e)
+        {
+            //limpio el datagrid cada vez que genero una serie
+            dtgSerie.Rows.Clear();
+
+            //Valido espacios vacios o en blanco en la muestra y lambda
+            if (string.IsNullOrWhiteSpace(valorMuestra.Text))
+            {
+                MessageBox.Show(" ¡El valor de la muestra no puede quedar Vacio!");
+                return;
+            }
+
+            else
+            {
+                if (string.IsNullOrWhiteSpace(valorLambda.Text))
+                {
+                    MessageBox.Show(" ¡El valor de lambda no puede quedar Vacio!");
+                    return;
+                }
+                else
+                {
+                    //Genero los pseudoaleatorio
+                    Random rnd = new Random();
+                    for (int i = 0; i < int.Parse(valorMuestra.Text); i++)
+                    {
+                        //Pseudo
+                        double pseudo = rnd.NextDouble();
+                        pseudo = Math.Round(pseudo, 4);
+                        
+                        //Parametro lambda
+                        double lambda = double.Parse(valorLambda.Text);
+                        //Calculo el valor 
+                        double x = -1 / lambda * Math.Log(1-pseudo);
+                        
+                        //Trunco a 4 decimales
+                        x = Math.Round(x, 4);
+
+                        //Agrego al datagrid
+                        dtgSerie.Rows.Add((i + 1), x);
+                    }
+                }
+            }
+
+           
         }
     }
 }

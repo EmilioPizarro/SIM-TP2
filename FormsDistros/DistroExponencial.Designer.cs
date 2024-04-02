@@ -113,6 +113,7 @@
             this.btnGenerarSerie.TabIndex = 14;
             this.btnGenerarSerie.Text = "Generar Serie";
             this.btnGenerarSerie.UseVisualStyleBackColor = false;
+            this.btnGenerarSerie.Click += new System.EventHandler(this.btnGenerarSerie_Click);
             // 
             // dtgSerie
             // 
