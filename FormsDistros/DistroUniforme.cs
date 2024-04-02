@@ -90,23 +90,30 @@ namespace TP_2
                 {
                     double inferior = int.Parse(limInferior.Text);
                     double superior = int.Parse(limSuperior.Text);
+                    //Validacion obvia de los limites
                     if(inferior> superior)
                     {
+                        
                         MessageBox.Show("¡El limite Inferior no puede ser mayor que el limite Superior!");
+                        //Si no son validos dejar el campo en blanco
                         limInferior.Text = " ";
                         limSuperior.Text = " ";
                         return;
                     }
                     else
                     {
+                        //Generacion del pseudo 
                         Random rnd = new Random();
 
                         for (int i = 0; i < int.Parse(valorMuestra.Text); i++)
                         {
                             double pseudo = rnd.NextDouble();
                             pseudo = Math.Round(pseudo, 4);
+
+                            //Obedeciendo la formula del teorico
                             double x = pseudo * (superior - inferior) + inferior;
                             x = Math.Round(x, 4);
+                            //Agregar el valor al datagrid
                             dtgSerie.Rows.Add((i + 1), x);
                         }
 
