@@ -34,8 +34,8 @@
             this.btnInicio = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
+            this.valorMedia = new System.Windows.Forms.MaskedTextBox();
+            this.valorDesviacion = new System.Windows.Forms.MaskedTextBox();
             this.dtgSerie = new System.Windows.Forms.DataGridView();
             this.Muestra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -106,23 +106,25 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Desviacion Estandar:";
             // 
-            // maskedTextBox1
+            // valorMedia
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(81, 104);
-            this.maskedTextBox1.Mask = "99999";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(70, 20);
-            this.maskedTextBox1.TabIndex = 10;
-            this.maskedTextBox1.ValidatingType = typeof(int);
+            this.valorMedia.Location = new System.Drawing.Point(81, 104);
+            this.valorMedia.Mask = "0.00";
+            this.valorMedia.Name = "valorMedia";
+            this.valorMedia.Size = new System.Drawing.Size(70, 20);
+            this.valorMedia.TabIndex = 10;
+            this.valorMedia.ValidatingType = typeof(int);
+            this.valorMedia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.valorMedia_KeyPress);
             // 
-            // maskedTextBox2
+            // valorDesviacion
             // 
-            this.maskedTextBox2.Location = new System.Drawing.Point(323, 104);
-            this.maskedTextBox2.Mask = "99999";
-            this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(70, 20);
-            this.maskedTextBox2.TabIndex = 11;
-            this.maskedTextBox2.ValidatingType = typeof(int);
+            this.valorDesviacion.Location = new System.Drawing.Point(323, 104);
+            this.valorDesviacion.Mask = "0.00";
+            this.valorDesviacion.Name = "valorDesviacion";
+            this.valorDesviacion.Size = new System.Drawing.Size(70, 20);
+            this.valorDesviacion.TabIndex = 11;
+            this.valorDesviacion.ValidatingType = typeof(int);
+            this.valorDesviacion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.valorDesviacion_KeyPress);
             // 
             // dtgSerie
             // 
@@ -165,8 +167,8 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnGenerarSerie);
             this.Controls.Add(this.dtgSerie);
-            this.Controls.Add(this.maskedTextBox2);
-            this.Controls.Add(this.maskedTextBox1);
+            this.Controls.Add(this.valorDesviacion);
+            this.Controls.Add(this.valorMedia);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnInicio);
@@ -190,8 +192,8 @@
         private System.Windows.Forms.Button btnInicio;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
+        private System.Windows.Forms.MaskedTextBox valorMedia;
+        private System.Windows.Forms.MaskedTextBox valorDesviacion;
         private System.Windows.Forms.DataGridView dtgSerie;
         private System.Windows.Forms.DataGridViewTextBoxColumn Muestra;
         private System.Windows.Forms.DataGridViewTextBoxColumn Valor;

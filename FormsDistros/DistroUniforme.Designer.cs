@@ -114,6 +114,7 @@
             this.limInferior.Size = new System.Drawing.Size(100, 20);
             this.limInferior.TabIndex = 9;
             this.limInferior.ValidatingType = typeof(int);
+            this.limInferior.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.limInferior_KeyPress);
             // 
             // limSuperior
             // 
@@ -123,6 +124,7 @@
             this.limSuperior.Size = new System.Drawing.Size(100, 20);
             this.limSuperior.TabIndex = 10;
             this.limSuperior.ValidatingType = typeof(int);
+            this.limSuperior.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.limSuperior_KeyPress);
             // 
             // dtgSerie
             // 

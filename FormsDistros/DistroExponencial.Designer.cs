@@ -97,11 +97,12 @@
             // valorLambda
             // 
             this.valorLambda.Location = new System.Drawing.Point(141, 104);
-            this.valorLambda.Mask = "999999";
+            this.valorLambda.Mask = "00,000";
             this.valorLambda.Name = "valorLambda";
             this.valorLambda.Size = new System.Drawing.Size(100, 20);
             this.valorLambda.TabIndex = 9;
             this.valorLambda.ValidatingType = typeof(int);
+            this.valorLambda.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.valorLambda_KeyPress);
             // 
             // btnGenerarSerie
             // 
