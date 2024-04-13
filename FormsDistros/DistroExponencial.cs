@@ -61,36 +61,19 @@ namespace TP_2
             else
             {
                 Funciones funciones = new Funciones();
-         
                 if (funciones.tamañoMuestra(int.Parse(valorMuestra.Text)))
                 {
-                    if (funciones.EsMascaraVacia(valorLambda))
+                    Random rnd = new Random();
+                    for (int i = 0; i < int.Parse(valorMuestra.Text); i++)
                     {
-                        MessageBox.Show(" ¡El valor de lambda no puede quedar Vacio!");
-                        return;
+                        double pseudo = rnd.NextDouble();
+                        pseudo = Math.Round(pseudo, 4);
+
+                        //Agregar el valor a la columna de la serie de pseudos
+                        dtgSerie.Rows.Add((i + 1), pseudo);
+
                     }
-                    else
-                    {
-                        //Genero los pseudoaleatorio
-                        Random rnd = new Random();
-                        for (int i = 0; i < int.Parse(valorMuestra.Text); i++)
-                        {
-                            //Pseudo
-                            double pseudo = rnd.NextDouble();
-                            pseudo = Math.Round(pseudo, 4);
 
-                            //Parametro lambda
-                            double lambda = double.Parse(valorLambda.Text);
-                            //Calculo el valor 
-                            double x = -1 / lambda * Math.Log(1 - pseudo);
-
-                            //Trunco a 4 decimales
-                            x = Math.Round(x, 4);
-
-                            //Agrego al datagrid
-                            dtgSerie.Rows.Add((i + 1), x);
-                        }
-                    }
                 }
                 else
                 {
@@ -105,6 +88,47 @@ namespace TP_2
            
         }
 
-       
+        private void btnGenerarExponencial_Click(object sender, EventArgs e)
+        {
+            //Validar que no este vacio el contenido de la primer celda de la serie de pseudos,
+            //si esta vacio es que no se genero la serie
+            DataGridViewCell primerCelda = dtgSerie.Rows[0].Cells[1];
+            if(primerCelda.Value == null || primerCelda.Value.ToString() == "")
+            {
+                MessageBox.Show("Es necesario Generar la serie de Pseudoaleatorios Primero!.");
+                return;
+
+            }
+            else
+            {
+                //Tengo que limpiar la coma del campo de carga para que no la reconozca como caracter al momento
+                //de validar si es entero o no 
+                string sinComaDecimal = valorLambda.Text.Replace(".", "");
+                if (string.IsNullOrWhiteSpace(sinComaDecimal))
+                {
+                    MessageBox.Show("!El valor de Lambda no puede quedar vacio¡");
+                    return;
+                }
+                else
+                {
+                    double lambda = double.Parse(valorLambda.Text);
+                    for (int i = 0; i < dtgSerie.RowCount; i++)
+                    {
+                        double valorOriginal;
+                        if (dtgSerie.Rows[i].Cells[1].Value != null &&
+                            double.TryParse(dtgSerie.Rows[i].Cells[1].Value.ToString(), out valorOriginal))
+                        {
+                            //Calculo el valor segun la formula Exponencial
+                            double pseudo_expo = (-1 / lambda) * Math.Log(1 - valorOriginal);
+                            pseudo_expo = Math.Round(pseudo_expo, 4);
+
+                            //Asignar el valor a la serie exponencial
+                            dtgSerie.Rows[i].Cells[2].Value = pseudo_expo;
+                        
+                        }
+                    }
+                }
+            }
+        }
     }
 }

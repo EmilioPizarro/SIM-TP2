@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.valorMuestra = new System.Windows.Forms.MaskedTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,9 +41,14 @@
             this.limSuperior = new System.Windows.Forms.MaskedTextBox();
             this.dtgSerie = new System.Windows.Forms.DataGridView();
             this.Muestra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Serie_Pseudos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Serie_ab = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnGenerarSerie = new System.Windows.Forms.Button();
+            this.btnHistograma = new System.Windows.Forms.Button();
+            this.histograma = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.btnGenerarAB = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgSerie)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.histograma)).BeginInit();
             this.SuspendLayout();
             // 
             // valorMuestra
@@ -78,7 +86,7 @@
             // 
             this.btnInicio.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInicio.Location = new System.Drawing.Point(647, 12);
+            this.btnInicio.Location = new System.Drawing.Point(679, 12);
             this.btnInicio.Name = "btnInicio";
             this.btnInicio.Size = new System.Drawing.Size(141, 36);
             this.btnInicio.TabIndex = 6;
@@ -131,40 +139,97 @@
             this.dtgSerie.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgSerie.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Muestra,
-            this.Valor});
+            this.Serie_Pseudos,
+            this.Serie_ab});
             this.dtgSerie.Location = new System.Drawing.Point(18, 140);
             this.dtgSerie.Name = "dtgSerie";
-            this.dtgSerie.Size = new System.Drawing.Size(240, 298);
+            this.dtgSerie.RowHeadersWidth = 51;
+            this.dtgSerie.Size = new System.Drawing.Size(327, 298);
             this.dtgSerie.TabIndex = 13;
             // 
             // Muestra
             // 
             this.Muestra.HeaderText = "Muestra";
+            this.Muestra.MinimumWidth = 6;
             this.Muestra.Name = "Muestra";
+            this.Muestra.Width = 125;
             // 
-            // Valor
+            // Serie_Pseudos
             // 
-            this.Valor.HeaderText = "Valor";
-            this.Valor.Name = "Valor";
+            this.Serie_Pseudos.HeaderText = "Serie_Pseudos";
+            this.Serie_Pseudos.MinimumWidth = 6;
+            this.Serie_Pseudos.Name = "Serie_Pseudos";
+            this.Serie_Pseudos.Width = 125;
+            // 
+            // Serie_ab
+            // 
+            this.Serie_ab.HeaderText = "Serie_ab";
+            this.Serie_ab.MinimumWidth = 6;
+            this.Serie_ab.Name = "Serie_ab";
+            this.Serie_ab.Width = 125;
             // 
             // btnGenerarSerie
             // 
             this.btnGenerarSerie.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnGenerarSerie.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerarSerie.Location = new System.Drawing.Point(264, 140);
+            this.btnGenerarSerie.Location = new System.Drawing.Point(367, 140);
             this.btnGenerarSerie.Name = "btnGenerarSerie";
-            this.btnGenerarSerie.Size = new System.Drawing.Size(141, 36);
+            this.btnGenerarSerie.Size = new System.Drawing.Size(141, 64);
             this.btnGenerarSerie.TabIndex = 14;
-            this.btnGenerarSerie.Text = "Generar Serie";
+            this.btnGenerarSerie.Text = "Generar Serie Uniforme (0,1]";
             this.btnGenerarSerie.UseVisualStyleBackColor = false;
             this.btnGenerarSerie.Click += new System.EventHandler(this.btnGenerarSerie_Click);
+            // 
+            // btnHistograma
+            // 
+            this.btnHistograma.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnHistograma.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHistograma.Location = new System.Drawing.Point(367, 375);
+            this.btnHistograma.Name = "btnHistograma";
+            this.btnHistograma.Size = new System.Drawing.Size(141, 63);
+            this.btnHistograma.TabIndex = 16;
+            this.btnHistograma.Text = "Generar Histograma";
+            this.btnHistograma.UseVisualStyleBackColor = false;
+            this.btnHistograma.Click += new System.EventHandler(this.btnHistograma_Click);
+            // 
+            // histograma
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.histograma.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.histograma.Legends.Add(legend1);
+            this.histograma.Location = new System.Drawing.Point(526, 140);
+            this.histograma.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.histograma.Name = "histograma";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.histograma.Series.Add(series1);
+            this.histograma.Size = new System.Drawing.Size(295, 298);
+            this.histograma.TabIndex = 17;
+            this.histograma.Text = "chart1";
+            // 
+            // btnGenerarAB
+            // 
+            this.btnGenerarAB.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnGenerarAB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerarAB.Location = new System.Drawing.Point(367, 255);
+            this.btnGenerarAB.Name = "btnGenerarAB";
+            this.btnGenerarAB.Size = new System.Drawing.Size(141, 64);
+            this.btnGenerarAB.TabIndex = 18;
+            this.btnGenerarAB.Text = "Generar Serie Uniforme a,b";
+            this.btnGenerarAB.UseVisualStyleBackColor = false;
+            this.btnGenerarAB.Click += new System.EventHandler(this.btnGenerarAB_Click);
             // 
             // DistroUniforme
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(830, 450);
+            this.Controls.Add(this.btnGenerarAB);
+            this.Controls.Add(this.histograma);
+            this.Controls.Add(this.btnHistograma);
             this.Controls.Add(this.btnGenerarSerie);
             this.Controls.Add(this.dtgSerie);
             this.Controls.Add(this.limSuperior);
@@ -179,6 +244,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DistroUniforme";
             ((System.ComponentModel.ISupportInitialize)(this.dtgSerie)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.histograma)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -195,8 +261,12 @@
         private System.Windows.Forms.MaskedTextBox limInferior;
         private System.Windows.Forms.MaskedTextBox limSuperior;
         private System.Windows.Forms.DataGridView dtgSerie;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Muestra;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
         private System.Windows.Forms.Button btnGenerarSerie;
+        private System.Windows.Forms.Button btnHistograma;
+        private System.Windows.Forms.DataVisualization.Charting.Chart histograma;
+        private System.Windows.Forms.Button btnGenerarAB;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Muestra;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Serie_Pseudos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Serie_ab;
     }
 }
