@@ -3,7 +3,11 @@
   "WorkspaceRootPath": "E:\\SIM-TP2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|E:\\SIM-TP2\\formsdistros\\distrouniforme.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|E:\\SIM-TP2\\formsdistros\\distronormal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|solutionrelative:formsdistros\\distronormal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|e:\\sim-tp2\\formsdistros\\distrouniforme.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|solutionrelative:formsdistros\\distrouniforme.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -13,10 +17,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|E:\\SIM-TP2\\entidades\\funciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|solutionrelative:entidades\\funciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|e:\\sim-tp2\\formsdistros\\distronormal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|solutionrelative:formsdistros\\distronormal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0E482649-785B-427A-B9CD-7B1AF3171FCA}|TP-2.csproj|E:\\SIM-TP2\\formsdistros\\distronormal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -50,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -83,20 +83,19 @@
               "RelativeToolTip": "FormsDistros\\DistroExponencial.cs",
               "ViewState": "AQIAAC4AAAAAAAAAAAD4v0IAAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-01T23:46:51.255Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-01T23:46:51.255Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "DistroUniforme.cs [Dise\u00F1o]",
+              "Title": "DistroUniforme.cs [Design]",
               "DocumentMoniker": "E:\\SIM-TP2\\FormsDistros\\DistroUniforme.cs",
               "RelativeDocumentMoniker": "FormsDistros\\DistroUniforme.cs",
-              "ToolTip": "E:\\SIM-TP2\\FormsDistros\\DistroUniforme.cs [Dise\u00F1o]",
-              "RelativeToolTip": "FormsDistros\\DistroUniforme.cs [Dise\u00F1o]",
+              "ToolTip": "E:\\SIM-TP2\\FormsDistros\\DistroUniforme.cs [Design]",
+              "RelativeToolTip": "FormsDistros\\DistroUniforme.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-01T23:34:08.563Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
@@ -112,20 +111,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "DistroNormal.cs",
               "DocumentMoniker": "E:\\SIM-TP2\\FormsDistros\\DistroNormal.cs",
               "RelativeDocumentMoniker": "FormsDistros\\DistroNormal.cs",
               "ToolTip": "E:\\SIM-TP2\\FormsDistros\\DistroNormal.cs",
               "RelativeToolTip": "FormsDistros\\DistroNormal.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAqwDUAAAAAAAAA",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAADUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-01T23:58:42.846Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Funciones.cs",
               "DocumentMoniker": "E:\\SIM-TP2\\Entidades\\Funciones.cs",
               "RelativeDocumentMoniker": "Entidades\\Funciones.cs",
@@ -133,30 +132,28 @@
               "RelativeToolTip": "Entidades\\Funciones.cs",
               "ViewState": "AQIAABsAAAAAAAAAAAAWwC4AAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-02T03:42:56.047Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-02T03:42:56.047Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "DistroExponencial.cs [Dise\u00F1o]",
               "DocumentMoniker": "E:\\SIM-TP2\\FormsDistros\\DistroExponencial.cs",
               "RelativeDocumentMoniker": "FormsDistros\\DistroExponencial.cs",
               "ToolTip": "E:\\SIM-TP2\\FormsDistros\\DistroExponencial.cs [Dise\u00F1o]",
               "RelativeToolTip": "FormsDistros\\DistroExponencial.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-01T23:33:35.007Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2024-04-01T23:33:35.007Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "DistroUniforme.cs",
               "DocumentMoniker": "E:\\SIM-TP2\\FormsDistros\\DistroUniforme.cs",
               "RelativeDocumentMoniker": "FormsDistros\\DistroUniforme.cs",
               "ToolTip": "E:\\SIM-TP2\\FormsDistros\\DistroUniforme.cs",
               "RelativeToolTip": "FormsDistros\\DistroUniforme.cs",
-              "ViewState": "AQIAAC0AAAAAAAAAAAAjwCMAAAAAAAAA",
+              "ViewState": "AQIAAD8AAAAAAAAAAAAjwCMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-01T23:58:27.257Z",
               "EditorCaption": ""
