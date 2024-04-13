@@ -36,10 +36,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.valorMedia = new System.Windows.Forms.MaskedTextBox();
             this.valorDesviacion = new System.Windows.Forms.MaskedTextBox();
+            this.btnGenerarSerie = new System.Windows.Forms.Button();
+            this.btnGenerarNormal = new System.Windows.Forms.Button();
+            this.btnHistograma = new System.Windows.Forms.Button();
             this.dtgSerie = new System.Windows.Forms.DataGridView();
             this.Muestra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnGenerarSerie = new System.Windows.Forms.Button();
+            this.Serie_Pseudos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Serie_Normal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtgSerie)).BeginInit();
             this.SuspendLayout();
             // 
@@ -126,38 +129,74 @@
             this.valorDesviacion.ValidatingType = typeof(int);
             this.valorDesviacion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.valorDesviacion_KeyPress);
             // 
+            // btnGenerarSerie
+            // 
+            this.btnGenerarSerie.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnGenerarSerie.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerarSerie.Location = new System.Drawing.Point(365, 140);
+            this.btnGenerarSerie.Name = "btnGenerarSerie";
+            this.btnGenerarSerie.Size = new System.Drawing.Size(141, 64);
+            this.btnGenerarSerie.TabIndex = 15;
+            this.btnGenerarSerie.Text = "Generar Serie Uniforme (0,1]";
+            this.btnGenerarSerie.UseVisualStyleBackColor = false;
+            this.btnGenerarSerie.Click += new System.EventHandler(this.btnGenerarSerie_Click_1);
+            // 
+            // btnGenerarNormal
+            // 
+            this.btnGenerarNormal.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnGenerarNormal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerarNormal.Location = new System.Drawing.Point(365, 246);
+            this.btnGenerarNormal.Name = "btnGenerarNormal";
+            this.btnGenerarNormal.Size = new System.Drawing.Size(141, 64);
+            this.btnGenerarNormal.TabIndex = 19;
+            this.btnGenerarNormal.Text = "Generar Serie Normal";
+            this.btnGenerarNormal.UseVisualStyleBackColor = false;
+            this.btnGenerarNormal.Click += new System.EventHandler(this.btnGenerarNormal_Click);
+            // 
+            // btnHistograma
+            // 
+            this.btnHistograma.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnHistograma.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHistograma.Location = new System.Drawing.Point(365, 375);
+            this.btnHistograma.Name = "btnHistograma";
+            this.btnHistograma.Size = new System.Drawing.Size(141, 63);
+            this.btnHistograma.TabIndex = 20;
+            this.btnHistograma.Text = "Generar Histograma";
+            this.btnHistograma.UseVisualStyleBackColor = false;
+            // 
             // dtgSerie
             // 
             this.dtgSerie.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgSerie.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Muestra,
-            this.Valor});
-            this.dtgSerie.Location = new System.Drawing.Point(22, 140);
+            this.Serie_Pseudos,
+            this.Serie_Normal});
+            this.dtgSerie.Location = new System.Drawing.Point(18, 140);
             this.dtgSerie.Name = "dtgSerie";
-            this.dtgSerie.Size = new System.Drawing.Size(240, 298);
-            this.dtgSerie.TabIndex = 12;
+            this.dtgSerie.RowHeadersWidth = 51;
+            this.dtgSerie.Size = new System.Drawing.Size(327, 298);
+            this.dtgSerie.TabIndex = 21;
             // 
             // Muestra
             // 
             this.Muestra.HeaderText = "Muestra";
+            this.Muestra.MinimumWidth = 6;
             this.Muestra.Name = "Muestra";
+            this.Muestra.Width = 125;
             // 
-            // Valor
+            // Serie_Pseudos
             // 
-            this.Valor.HeaderText = "Valor";
-            this.Valor.Name = "Valor";
+            this.Serie_Pseudos.HeaderText = "Serie_Pseudos";
+            this.Serie_Pseudos.MinimumWidth = 6;
+            this.Serie_Pseudos.Name = "Serie_Pseudos";
+            this.Serie_Pseudos.Width = 125;
             // 
-            // btnGenerarSerie
+            // Serie_Normal
             // 
-            this.btnGenerarSerie.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnGenerarSerie.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerarSerie.Location = new System.Drawing.Point(282, 140);
-            this.btnGenerarSerie.Name = "btnGenerarSerie";
-            this.btnGenerarSerie.Size = new System.Drawing.Size(141, 36);
-            this.btnGenerarSerie.TabIndex = 13;
-            this.btnGenerarSerie.Text = "Generar Serie";
-            this.btnGenerarSerie.UseVisualStyleBackColor = false;
-            this.btnGenerarSerie.Click += new System.EventHandler(this.btnGenerarSerie_Click);
+            this.Serie_Normal.HeaderText = "Serie_Normal";
+            this.Serie_Normal.MinimumWidth = 6;
+            this.Serie_Normal.Name = "Serie_Normal";
+            this.Serie_Normal.Width = 125;
             // 
             // DistroNormal
             // 
@@ -165,8 +204,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnGenerarSerie);
             this.Controls.Add(this.dtgSerie);
+            this.Controls.Add(this.btnHistograma);
+            this.Controls.Add(this.btnGenerarNormal);
+            this.Controls.Add(this.btnGenerarSerie);
             this.Controls.Add(this.valorDesviacion);
             this.Controls.Add(this.valorMedia);
             this.Controls.Add(this.label4);
@@ -194,9 +235,12 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.MaskedTextBox valorMedia;
         private System.Windows.Forms.MaskedTextBox valorDesviacion;
+        private System.Windows.Forms.Button btnGenerarSerie;
+        private System.Windows.Forms.Button btnGenerarNormal;
+        private System.Windows.Forms.Button btnHistograma;
         private System.Windows.Forms.DataGridView dtgSerie;
         private System.Windows.Forms.DataGridViewTextBoxColumn Muestra;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
-        private System.Windows.Forms.Button btnGenerarSerie;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Serie_Pseudos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Serie_Normal;
     }
 }
