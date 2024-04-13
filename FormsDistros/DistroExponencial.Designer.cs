@@ -37,7 +37,10 @@
             this.btnGenerarSerie = new System.Windows.Forms.Button();
             this.dtgSerie = new System.Windows.Forms.DataGridView();
             this.Muestra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Serie_Pseudos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Serie_Exponencial = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnGenerarExponencial = new System.Windows.Forms.Button();
+            this.btnGenerarHistograma = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgSerie)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,7 +99,7 @@
             // 
             // valorLambda
             // 
-            this.valorLambda.Location = new System.Drawing.Point(141, 104);
+            this.valorLambda.Location = new System.Drawing.Point(133, 107);
             this.valorLambda.Mask = "00,000";
             this.valorLambda.Name = "valorLambda";
             this.valorLambda.Size = new System.Drawing.Size(100, 20);
@@ -108,11 +111,11 @@
             // 
             this.btnGenerarSerie.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnGenerarSerie.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerarSerie.Location = new System.Drawing.Point(282, 140);
+            this.btnGenerarSerie.Location = new System.Drawing.Point(351, 140);
             this.btnGenerarSerie.Name = "btnGenerarSerie";
-            this.btnGenerarSerie.Size = new System.Drawing.Size(141, 36);
+            this.btnGenerarSerie.Size = new System.Drawing.Size(141, 64);
             this.btnGenerarSerie.TabIndex = 14;
-            this.btnGenerarSerie.Text = "Generar Serie";
+            this.btnGenerarSerie.Text = "Generar Serie Uniforme(0,1]";
             this.btnGenerarSerie.UseVisualStyleBackColor = false;
             this.btnGenerarSerie.Click += new System.EventHandler(this.btnGenerarSerie_Click);
             // 
@@ -121,21 +124,57 @@
             this.dtgSerie.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgSerie.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Muestra,
-            this.Valor});
+            this.Serie_Pseudos,
+            this.Serie_Exponencial});
             this.dtgSerie.Location = new System.Drawing.Point(22, 140);
             this.dtgSerie.Name = "dtgSerie";
-            this.dtgSerie.Size = new System.Drawing.Size(240, 298);
+            this.dtgSerie.RowHeadersWidth = 51;
+            this.dtgSerie.Size = new System.Drawing.Size(323, 298);
             this.dtgSerie.TabIndex = 15;
             // 
             // Muestra
             // 
             this.Muestra.HeaderText = "Muestra";
+            this.Muestra.MinimumWidth = 6;
             this.Muestra.Name = "Muestra";
+            this.Muestra.Width = 125;
             // 
-            // Valor
+            // Serie_Pseudos
             // 
-            this.Valor.HeaderText = "Valor";
-            this.Valor.Name = "Valor";
+            this.Serie_Pseudos.HeaderText = "Serie_Pseudos";
+            this.Serie_Pseudos.MinimumWidth = 6;
+            this.Serie_Pseudos.Name = "Serie_Pseudos";
+            this.Serie_Pseudos.Width = 125;
+            // 
+            // Serie_Exponencial
+            // 
+            this.Serie_Exponencial.HeaderText = "Serie_Exponencial";
+            this.Serie_Exponencial.MinimumWidth = 6;
+            this.Serie_Exponencial.Name = "Serie_Exponencial";
+            this.Serie_Exponencial.Width = 125;
+            // 
+            // btnGenerarExponencial
+            // 
+            this.btnGenerarExponencial.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnGenerarExponencial.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerarExponencial.Location = new System.Drawing.Point(351, 255);
+            this.btnGenerarExponencial.Name = "btnGenerarExponencial";
+            this.btnGenerarExponencial.Size = new System.Drawing.Size(141, 64);
+            this.btnGenerarExponencial.TabIndex = 19;
+            this.btnGenerarExponencial.Text = "Generar Serie Exponencial";
+            this.btnGenerarExponencial.UseVisualStyleBackColor = false;
+            this.btnGenerarExponencial.Click += new System.EventHandler(this.btnGenerarExponencial_Click);
+            // 
+            // btnGenerarHistograma
+            // 
+            this.btnGenerarHistograma.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnGenerarHistograma.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerarHistograma.Location = new System.Drawing.Point(351, 374);
+            this.btnGenerarHistograma.Name = "btnGenerarHistograma";
+            this.btnGenerarHistograma.Size = new System.Drawing.Size(141, 64);
+            this.btnGenerarHistograma.TabIndex = 20;
+            this.btnGenerarHistograma.Text = "Generar Histograma";
+            this.btnGenerarHistograma.UseVisualStyleBackColor = false;
             // 
             // DistroExponencial
             // 
@@ -143,6 +182,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnGenerarHistograma);
+            this.Controls.Add(this.btnGenerarExponencial);
             this.Controls.Add(this.dtgSerie);
             this.Controls.Add(this.btnGenerarSerie);
             this.Controls.Add(this.valorLambda);
@@ -171,7 +212,10 @@
         private System.Windows.Forms.MaskedTextBox valorLambda;
         private System.Windows.Forms.Button btnGenerarSerie;
         private System.Windows.Forms.DataGridView dtgSerie;
+        private System.Windows.Forms.Button btnGenerarExponencial;
+        private System.Windows.Forms.Button btnGenerarHistograma;
         private System.Windows.Forms.DataGridViewTextBoxColumn Muestra;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Serie_Pseudos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Serie_Exponencial;
     }
 }
