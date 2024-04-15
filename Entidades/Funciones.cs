@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using Microsoft.Office.Interop.Excel;
+using Chart = System.Windows.Forms.DataVisualization.Charting.Chart;
+using ChartArea = System.Windows.Forms.DataVisualization.Charting.ChartArea;
+using Series = System.Windows.Forms.DataVisualization.Charting.Series;
 
 namespace TP_2.Entidades
 {
@@ -20,12 +25,12 @@ namespace TP_2.Entidades
             if (fichero.ShowDialog() == DialogResult.OK)
             {
                 Microsoft.Office.Interop.Excel.Application aplicacion;
-                Microsoft.Office.Interop.Excel.Workbook libros_trabajo;
-                Microsoft.Office.Interop.Excel.Worksheet hoja_trabajo;
+                Workbook libros_trabajo;
+                Worksheet hoja_trabajo;
                 aplicacion = new Microsoft.Office.Interop.Excel.Application();
                 libros_trabajo = aplicacion.Workbooks.Add();
                 hoja_trabajo =
-                    (Microsoft.Office.Interop.Excel.Worksheet)libros_trabajo.Worksheets.get_Item(1);
+                    (Worksheet)libros_trabajo.Worksheets.get_Item(1);
                 //Recorremos el DataGridView rellenando la hoja de trabajo
                 for (int i = 0; i < grd.Rows.Count - 1; i++)
                 {
@@ -42,11 +47,10 @@ namespace TP_2.Entidades
                     }
                 }
                 libros_trabajo.SaveAs(fichero.FileName,
-                    Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal);
+                    XlFileFormat.xlWorkbookNormal);
                 libros_trabajo.Close(true);
-                //Cursor.Current = Cursors.WaitCursor;//cambia el tipo de cursor al tipo wait
                 aplicacion.Quit();
-                // Cursor.Current = Cursors.Default;//restaura el tipo de cursor de defecto
+                
             }
         }
 
@@ -82,6 +86,12 @@ namespace TP_2.Entidades
 
 
         }
+
+
+
+
+
+
 
         public void GenerarSerie(DataGridView dtgSerie, string valorMuestra)
         {
@@ -129,6 +139,95 @@ namespace TP_2.Entidades
 
 
 
+        public void GenerarHistograma(string seleccion,List<double> serie , Chart histograma,Panel pnlHistograma)
+        {
+            int valorIntervalo = Convert.ToInt32(seleccion);
+
+
+            double minimo = serie.Min();
+            double maximo = serie.Max();
+            double anchoDeSerie = (maximo - minimo) / valorIntervalo;
+
+
+            // Calcular Frecuencia de aparicion 
+            //lo hago con un contador, la frecuencia
+            // que tiene una longitud del tamaño de los intervalos , y en cada 
+            // posicion aumenta en 1 cuando se da la aparicion de algun valor en el intervalo
+            int[] frecuencias = new int[valorIntervalo];
+            foreach (double pseudoab in serie)
+            {
+
+                //calculo el indice del intervalo
+                int indice = (int)Math.Floor((pseudoab - minimo) / anchoDeSerie);
+                //Compruebo que el indice este entre 0 y el valor maximo del intervalo para no irme 
+                //fuera del intervalo
+                if (indice >= 0 && indice < valorIntervalo)
+                {
+                    //en el arreglo de frecuencias, en la posicion del indice sumo 1
+                    frecuencias[indice]++;
+                }
+
+
+            }
+
+
+
+
+            //serie con los valores de marcas de clase y las frecuencias correspondientes
+            Series serieValores = new Series();
+            for (int i = 0; i < valorIntervalo; i++)
+            {
+                double limiteInferior = minimo + (i * anchoDeSerie);
+                double limiteSuperior = minimo + ((i + 1) * anchoDeSerie);
+                double marcaDeClase = (limiteInferior + limiteSuperior) / 2;
+
+                serieValores.Points.AddXY(marcaDeClase, frecuencias[i]);
+
+            }
+
+            // Verificar si el Chart ya existe
+            if (histograma == null)
+            {
+
+                histograma.Dock = DockStyle.Fill;
+
+                // Configurar el área del gráfico
+                ChartArea chartArea = new ChartArea();
+                histograma.ChartAreas.Add(chartArea);
+
+                // Agregar el control Chart al Panel
+                pnlHistograma.Controls.Add(histograma);
+            }
+
+
+            
+            serieValores.BorderWidth = 1;
+            serieValores.BorderColor = Color.Black;
+
+
+            // Mostrar el histograma Configurado 
+            histograma.Series.Clear();
+            histograma.Series.Add(serieValores);
+
+            histograma.ChartAreas[0].AxisX.IsLabelAutoFit = false;
+
+            histograma .ChartAreas[0].AxisX.Title = "Valor";
+            histograma.ChartAreas[0].AxisY.Title = "Frecuencia";
+
+            histograma.ChartAreas[0].AxisY.Minimum = 0;
+            histograma.ChartAreas[0].AxisX.Minimum = minimo;
+            histograma.ChartAreas[0].AxisX.Maximum = maximo;
+
+            histograma.ChartAreas[0].AxisY.Interval = 1;
+
+            histograma.ChartAreas[0].AxisX.MajorGrid.Enabled = true;
+            histograma.ChartAreas[0].AxisY.MajorGrid.Enabled = true;
+            histograma.ChartAreas[0].AxisX.MajorGrid.LineWidth = 0;
+            histograma.ChartAreas[0].AxisY.MajorGrid.LineWidth = 0;
+
+            histograma.Series["Series1"]["PointWidth"] = "1";
+        }
+
       
 
         //Validar el tamaño de una muestra
@@ -145,5 +244,39 @@ namespace TP_2.Entidades
                 return false;
             }
         }
+
+
+        //Obtener la serie cargada en el datagridview
+        public List<double> ObtenerSerie(string columnName,DataGridView dtgseries)
+        {
+            List<double> serie = new List<double>();
+
+            // Verificar si la columna existe
+            if (!dtgseries.Columns.Contains(columnName))
+            {
+                MessageBox.Show($"La columna '{columnName}' no existe en el DataGridView.");
+                return serie;
+            }
+
+            // Obtener el índice de la columna seleccionada
+            int columnIndex = dtgseries.Columns[columnName].Index;
+
+            // Recorrer las filas para obtener los datos de la columna seleccionada
+            foreach (DataGridViewRow row in dtgseries.Rows)
+            {
+                if (row.Cells[columnIndex].Value != null)
+                {
+                    double value;
+                    if (double.TryParse(row.Cells[columnIndex].Value.ToString(), out value))
+                    {
+                        serie.Add(value);
+                    }
+                }
+            }
+
+            return serie;
+        }
+
+
     }
 }

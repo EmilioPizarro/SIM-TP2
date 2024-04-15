@@ -1,4 +1,5 @@
-﻿using Microsoft.Office.Interop.Excel;
+﻿using MathNet.Numerics.Statistics;
+using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using TP_2.Entidades;
@@ -26,7 +28,7 @@ namespace TP_2
 
         private void valorMuestra_KeyPress(object sender, KeyPressEventArgs e)
         {
-            funciones.ProcesarTeclaPresionada(sender,e);
+            funciones.ProcesarTeclaPresionada(sender, e);
         }
 
         private void limInferior_KeyPress(object sender, KeyPressEventArgs e)
@@ -93,7 +95,7 @@ namespace TP_2
                     {
                         for (int i = 0; i < dtgSerie.RowCount; i++)
                         {
-                            
+
                             double valorOriginal;
                             //Tratar de obtener y convertir a double el valor de la primer celda de los pseudos, y devolcerlo para manipularlo segun
                             //la distribucion.
@@ -108,16 +110,14 @@ namespace TP_2
                                 dtgSerie.Rows[i].Cells[2].Value = pseudo_ab;
                             }
                         }
-                     
 
-                        //Con esto pueden generar un excel con la distribucion generada
 
-                        //funciones.ExportarDataGridViewExcel(dtgSerie);
+
 
                     }
                 }
 
-           
+
 
             }
         }
@@ -126,65 +126,45 @@ namespace TP_2
 
 
         private void btnHistograma_Click(object sender, EventArgs e)
+
         {
-            // Limpiar el gráfico antes de cargar nuevos datos
-            histograma.Series.Clear();
-            histograma.ChartAreas.Clear();
+            //Genero un arreglo con los valores de la columna que me interesa del datagrid, en este caso la funcion se puede usar para todas las series
+            List<double> serie = funciones.ObtenerSerie("Serie_ab", dtgSerie);
 
-            // Agregar un área de gráfico
-            histograma.ChartAreas.Add(new ChartArea());
-
-            // Crear una nueva serie para el gráfico
-            Series serie = new Series();
-            serie.ChartType = SeriesChartType.Column; // Tipo de gráfico de columnas
-
-            // Agregar la serie al gráfico
-            histograma.Series.Add(serie);
-
-            //Crear tabla con el datagrid
-            DataTable tablaSerie = new DataTable();
-
-            //Encabezados de la tabla
-            foreach(DataGridViewColumn column in dtgSerie.Columns)
+            //Validar que no este vacio el arreglo
+            if (serie.Count == 0)
             {
-                tablaSerie.Columns.Add(column.HeaderText);
+                MessageBox.Show("No hay datos generados!");
+                return;
             }
-            //Rellenar
-            foreach(DataGridViewRow row in  dtgSerie.Rows)
+            else
             {
-                //Por cada linea del datagrid creo una linea en la tabla
-                DataRow linea = tablaSerie.NewRow();
-                //creo las celdas y las cargo
-                foreach(DataGridViewCell celda in row.Cells)
-                {
-                    linea[celda.ColumnIndex] = celda.Value;
-                    
-                }
-                tablaSerie.Rows.Add(linea);
+                //Validamos que se haya seleccionado almenos una opcion de intervalo del combobox
+                if (cmbIntervalos.SelectedItem != null)
 
-            }
-
-            foreach(DataRow row in  tablaSerie.Rows)
-            {
-                if (row[0] != null)
                 {
-                    int etiqueta = Convert.ToInt32(row[0]);
-                    double valor = Convert.ToDouble(row[1]);
-                    serie.Points.AddXY(etiqueta, valor);
+                    string seleccion = cmbIntervalos.SelectedItem.ToString();
+                    funciones.GenerarHistograma(seleccion, serie, histogramaAB, pnlHistograma);
+
                 }
+
+
                 else
                 {
-                    break;
+                    MessageBox.Show("Debe seleccionar la cantidad de Intervalos a utilizar!");
+                    return;
                 }
-    
             }
-
-            histograma.SaveImage("prueba",ChartImageFormat.Png);
-
-
-
 
         }
 
+        private void btnExcel_Click(object sender, EventArgs e)
+        {
+            //generar un excel 
+            funciones.ExportarDataGridViewExcel(dtgSerie);
+            
+        }
+
+        
     }    
 }

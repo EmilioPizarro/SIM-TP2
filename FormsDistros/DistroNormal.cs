@@ -79,14 +79,19 @@ namespace TP_2
                     
                      for (int i = 0; i < dtgSerie.RowCount; i+=2)
                     {
+                        //Obtengo los randoms de las filas, de a pares, es decir de a 2
                         double rnd1;
                         double rnd2;
+                        
+                        //Por las dudas valido que no haya contenido vacio, los convierto a double y los devuelvo
                         if (dtgSerie.Rows[i].Cells[1].Value != null &&
                            double.TryParse(dtgSerie.Rows[i].Cells[1].Value.ToString(), out rnd1))
                         {
                             if(dtgSerie.Rows[i+1].Cells[1].Value != null &&
                            double.TryParse(dtgSerie.Rows[i+1].Cells[1].Value.ToString(), out rnd2))
                            {
+
+                                //Ya con los dos randoms puedo aplicar boxmuller de a pares
                                 double n_1 = (Math.Sqrt(-2 * Math.Log(rnd1)) * Math.Cos(2 * Math.PI * rnd2));
                                 n_1 = (n_1 * desviacion) + media;
 
@@ -103,18 +108,9 @@ namespace TP_2
                                 dtgSerie.Rows[i].Cells[2].Value = n_1;
                                 dtgSerie.Rows[i+1].Cells[2].Value = n_2;
 
-
-
                             }
 
-
-
-
                         }
-                    
-                    
-                    
-                    
                     
                     }
 
@@ -124,6 +120,36 @@ namespace TP_2
             }
 
 
+        }
+
+        private void btnHistograma_Click(object sender, EventArgs e)
+        {
+            List<double> serieNormal = funciones.ObtenerSerie("Serie_Normal",dtgSerie);
+            if (serieNormal.Count == 0)
+            {
+                MessageBox.Show("No hay datos generados!");
+                return;
+            }
+            else
+            {
+                if (cmbIntervalos.SelectedItem != null)
+                {
+                    string seleccion = cmbIntervalos.SelectedItem.ToString();
+                    funciones.GenerarHistograma(seleccion, serieNormal, histogramaNormal, pnlHistograma);
+            }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar la cantidad de Intervalos a utilizar!");
+                    return;
+                }
+            }
+            
+        }
+
+        private void btnExcel_Click(object sender, EventArgs e)
+        {
+            //generar un excel 
+            funciones.ExportarDataGridViewExcel(dtgSerie);
         }
     }
 }

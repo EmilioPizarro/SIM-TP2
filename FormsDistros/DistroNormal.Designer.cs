@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.valorMuestra = new System.Windows.Forms.MaskedTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -43,7 +46,14 @@
             this.Muestra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Serie_Pseudos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Serie_Normal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnExcel = new System.Windows.Forms.Button();
+            this.pnlHistograma = new System.Windows.Forms.Panel();
+            this.histogramaNormal = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmbIntervalos = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtgSerie)).BeginInit();
+            this.pnlHistograma.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.histogramaNormal)).BeginInit();
             this.SuspendLayout();
             // 
             // valorMuestra
@@ -81,7 +91,7 @@
             // 
             this.btnInicio.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInicio.Location = new System.Drawing.Point(647, 12);
+            this.btnInicio.Location = new System.Drawing.Point(1329, 12);
             this.btnInicio.Name = "btnInicio";
             this.btnInicio.Size = new System.Drawing.Size(141, 36);
             this.btnInicio.TabIndex = 7;
@@ -133,7 +143,7 @@
             // 
             this.btnGenerarSerie.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnGenerarSerie.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerarSerie.Location = new System.Drawing.Point(365, 140);
+            this.btnGenerarSerie.Location = new System.Drawing.Point(406, 140);
             this.btnGenerarSerie.Name = "btnGenerarSerie";
             this.btnGenerarSerie.Size = new System.Drawing.Size(141, 64);
             this.btnGenerarSerie.TabIndex = 15;
@@ -145,7 +155,7 @@
             // 
             this.btnGenerarNormal.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnGenerarNormal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerarNormal.Location = new System.Drawing.Point(365, 246);
+            this.btnGenerarNormal.Location = new System.Drawing.Point(406, 210);
             this.btnGenerarNormal.Name = "btnGenerarNormal";
             this.btnGenerarNormal.Size = new System.Drawing.Size(141, 64);
             this.btnGenerarNormal.TabIndex = 19;
@@ -157,12 +167,13 @@
             // 
             this.btnHistograma.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnHistograma.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHistograma.Location = new System.Drawing.Point(365, 375);
+            this.btnHistograma.Location = new System.Drawing.Point(406, 280);
             this.btnHistograma.Name = "btnHistograma";
             this.btnHistograma.Size = new System.Drawing.Size(141, 63);
             this.btnHistograma.TabIndex = 20;
             this.btnHistograma.Text = "Generar Histograma";
             this.btnHistograma.UseVisualStyleBackColor = false;
+            this.btnHistograma.Click += new System.EventHandler(this.btnHistograma_Click);
             // 
             // dtgSerie
             // 
@@ -174,7 +185,7 @@
             this.dtgSerie.Location = new System.Drawing.Point(18, 140);
             this.dtgSerie.Name = "dtgSerie";
             this.dtgSerie.RowHeadersWidth = 51;
-            this.dtgSerie.Size = new System.Drawing.Size(327, 298);
+            this.dtgSerie.Size = new System.Drawing.Size(382, 749);
             this.dtgSerie.TabIndex = 21;
             // 
             // Muestra
@@ -198,12 +209,77 @@
             this.Serie_Normal.Name = "Serie_Normal";
             this.Serie_Normal.Width = 125;
             // 
+            // btnExcel
+            // 
+            this.btnExcel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExcel.Location = new System.Drawing.Point(406, 349);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(141, 63);
+            this.btnExcel.TabIndex = 22;
+            this.btnExcel.Text = "Generar Excel";
+            this.btnExcel.UseVisualStyleBackColor = false;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
+            // pnlHistograma
+            // 
+            this.pnlHistograma.Controls.Add(this.histogramaNormal);
+            this.pnlHistograma.Location = new System.Drawing.Point(552, 140);
+            this.pnlHistograma.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlHistograma.Name = "pnlHistograma";
+            this.pnlHistograma.Size = new System.Drawing.Size(928, 749);
+            this.pnlHistograma.TabIndex = 23;
+            // 
+            // histogramaNormal
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.histogramaNormal.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.histogramaNormal.Legends.Add(legend2);
+            this.histogramaNormal.Location = new System.Drawing.Point(2, 2);
+            this.histogramaNormal.Margin = new System.Windows.Forms.Padding(2);
+            this.histogramaNormal.Name = "histogramaNormal";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.histogramaNormal.Series.Add(series2);
+            this.histogramaNormal.Size = new System.Drawing.Size(924, 745);
+            this.histogramaNormal.TabIndex = 0;
+            this.histogramaNormal.Text = "chart1";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(402, 105);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(120, 20);
+            this.label5.TabIndex = 25;
+            this.label5.Text = "Cant. Intervalos";
+            // 
+            // cmbIntervalos
+            // 
+            this.cmbIntervalos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbIntervalos.FormattingEnabled = true;
+            this.cmbIntervalos.Items.AddRange(new object[] {
+            "5",
+            "10",
+            "15"});
+            this.cmbIntervalos.Location = new System.Drawing.Point(519, 105);
+            this.cmbIntervalos.Name = "cmbIntervalos";
+            this.cmbIntervalos.Size = new System.Drawing.Size(50, 21);
+            this.cmbIntervalos.TabIndex = 24;
+            // 
             // DistroNormal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1482, 900);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.cmbIntervalos);
+            this.Controls.Add(this.pnlHistograma);
+            this.Controls.Add(this.btnExcel);
             this.Controls.Add(this.dtgSerie);
             this.Controls.Add(this.btnHistograma);
             this.Controls.Add(this.btnGenerarNormal);
@@ -220,6 +296,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DistroNormal";
             ((System.ComponentModel.ISupportInitialize)(this.dtgSerie)).EndInit();
+            this.pnlHistograma.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.histogramaNormal)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -242,5 +320,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Muestra;
         private System.Windows.Forms.DataGridViewTextBoxColumn Serie_Pseudos;
         private System.Windows.Forms.DataGridViewTextBoxColumn Serie_Normal;
+        private System.Windows.Forms.Button btnExcel;
+        private System.Windows.Forms.Panel pnlHistograma;
+        private System.Windows.Forms.DataVisualization.Charting.Chart histogramaNormal;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cmbIntervalos;
     }
 }

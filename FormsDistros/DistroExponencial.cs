@@ -6,8 +6,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Forms;
 using TP_2.Entidades;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 namespace TP_2
 {
@@ -50,43 +52,12 @@ namespace TP_2
         {
             //limpio el datagrid cada vez que genero una serie
             dtgSerie.Rows.Clear();
+            
 
-            //Valido espacios vacios o en blanco en la muestra y lambda
-            if (string.IsNullOrWhiteSpace(valorMuestra.Text))
-            {
-                MessageBox.Show(" ¡El valor de la muestra no puede quedar Vacio!");
-                return;
-            }
-
-            else
-            {
-                Funciones funciones = new Funciones();
-                if (funciones.tamañoMuestra(int.Parse(valorMuestra.Text)))
-                {
-                    Random rnd = new Random();
-                    for (int i = 0; i < int.Parse(valorMuestra.Text); i++)
-                    {
-                        double pseudo = rnd.NextDouble();
-                        pseudo = Math.Round(pseudo, 4);
-
-                        //Agregar el valor a la columna de la serie de pseudos
-                        dtgSerie.Rows.Add((i + 1), pseudo);
-
-                    }
-
-                }
-                else
-                {
-                    MessageBox.Show("!La muestra no puede ser mayor a 1.000.000!");
-                    valorMuestra.Text = " ";
-                    return;
-                }
-
-                
-            }
-
-           
+            //Genero la serie 0,1
+            funciones.GenerarSerie(dtgSerie, valorMuestra.Text);
         }
+
 
         private void btnGenerarExponencial_Click(object sender, EventArgs e)
         {
@@ -129,6 +100,40 @@ namespace TP_2
                     }
                 }
             }
+        }
+
+        private void btnGenerarHistograma_Click(object sender, EventArgs e)
+        {
+            List<double> serieExponencial = new List<double>();
+            serieExponencial = funciones.ObtenerSerie("Serie_Exponencial", dtgSerie);
+
+            if (serieExponencial.Count == 0)
+            {
+                MessageBox.Show("No hay datos generados!");
+                return;
+            }
+
+            
+            if(cmbIntervalos.SelectedItem != null)
+            {
+                string seleccion = cmbIntervalos.SelectedItem.ToString();
+
+                funciones.GenerarHistograma(seleccion, serieExponencial, histogramaExponencial, pnlHistograma);
+
+
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar la cantidad de Intervalos a Utilizar!");
+                return;
+            }
+
+        }
+
+        private void btnExcel_Click(object sender, EventArgs e)
+        {
+            //generar un excel 
+            funciones.ExportarDataGridViewExcel(dtgSerie);
         }
     }
 }
