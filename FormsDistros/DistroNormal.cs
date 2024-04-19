@@ -73,8 +73,8 @@ namespace TP_2
                 }
                 else
                 {
-                    double media = Convert.ToDouble(valorMedia.Text);
-                    double desviacion = Convert.ToDouble(valorDesviacion.Text);
+                    double media = Convert.ToDouble(valorMedia.Text.Trim());
+                    double desviacion = Convert.ToDouble(valorDesviacion.Text.Trim());
 
                     
                      for (int i = 0; i < dtgSerie.RowCount; i+=2)

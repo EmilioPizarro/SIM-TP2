@@ -74,28 +74,26 @@ namespace TP_2
             {
                 //Tengo que limpiar la coma del campo de carga para que no la reconozca como caracter al momento
                 //de validar si es entero o no 
-                
-                
-                
-
                
-                if (string.IsNullOrWhiteSpace(valorLambda.Text.Replace("."," ")))
+                if (string.IsNullOrWhiteSpace(valorLambda.Text.Replace(","," ")))
                 {
                     MessageBox.Show("!El valor de Lambda no puede quedar vacio¡");
                     return;
                 }
                 else
-                {//Valido si puedo convertir el valor cargado a un double y lo devuelvo como lambda
+                {
                    
                     
                         for (int i = 0; i < dtgSerie.RowCount; i++)
-                        {
+                        {//Convierto a double lo cargado en la columna de ramdoms 
                             double valorOriginal;
                             if (dtgSerie.Rows[i].Cells[1].Value != null &&
                                 double.TryParse(dtgSerie.Rows[i].Cells[1].Value.ToString(), out valorOriginal))
                             {
-                                //Calculo el valor segun la formula Exponencial
-                                double pseudo_expo = (-1 / Convert.ToDouble(valorLambda.Text) * Math.Log(1 - valorOriginal));
+                                
+                                
+                                double lambda = double.Parse(valorLambda.Text.Trim());
+                                double pseudo_expo = - (1 / lambda) * Math.Log(1 - valorOriginal);
                                 pseudo_expo = Math.Round(pseudo_expo, 4);
 
                                 //Asignar el valor a la serie exponencial
@@ -103,7 +101,7 @@ namespace TP_2
 
                             }
                         }
-                    
+                   
                         
                 }
             }

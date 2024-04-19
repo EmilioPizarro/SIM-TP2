@@ -1,12 +1,9 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
-using Microsoft.Office.Interop.Excel;
 using Chart = System.Windows.Forms.DataVisualization.Charting.Chart;
 using ChartArea = System.Windows.Forms.DataVisualization.Charting.ChartArea;
 using Series = System.Windows.Forms.DataVisualization.Charting.Series;
@@ -15,7 +12,7 @@ namespace TP_2.Entidades
 {
     public class Funciones
     {
-        
+
 
         //Metodo de excel
         public void ExportarDataGridViewExcel(DataGridView grd)
@@ -37,7 +34,7 @@ namespace TP_2.Entidades
                 //Poner Columnas en excel
                 for (int j = 1; j < grd.Columns.Count; j++)
                 {
-                    hoja.Cells[1,j + 1] = grd.Columns[j].HeaderText;
+                    hoja.Cells[1, j + 1] = grd.Columns[j].HeaderText;
 
                 }
                 // Copiar los datos desde el DataGridView a Excel
@@ -47,22 +44,22 @@ namespace TP_2.Entidades
                     {
                         if (grd.Rows[i].Cells[j].Value != DBNull.Value && grd.Rows[i].Cells[j].Value != null)
                         {
-                           
+
                             //Si va por el false es porque no se pudo pasar a int y resulto ser el valor de serie
                             double valor = Convert.ToDouble(grd.Rows[i].Cells[j].Value);
                             hoja.Cells[i + 2, j + 1].NumberFormat = "0,0000"; // formato en 4 decimales
                             hoja.Cells[i + 2, j + 1].Value = valor;
-                           
+
                         }
                         else
                         {
                             hoja.Cells[i + 2, j + 1] = "";
                         }
-                       
+
                     }
                 }
                 //Guardar el archivo y respetar el formato
-                libro.SaveAs(fichero.FileName,XlFileFormat.xlWorkbookNormal);
+                libro.SaveAs(fichero.FileName, XlFileFormat.xlWorkbookNormal);
                 //Cerrar
                 libro.Close(true);
                 excelApp.Quit();
@@ -158,7 +155,7 @@ namespace TP_2.Entidades
 
 
 
-        public void GenerarHistograma(string seleccion,List<double> serie , Chart histograma,Panel pnlHistograma, DataGridView dtgfrecuencias)
+        public void GenerarHistograma(string seleccion, List<double> serie, Chart histograma, Panel pnlHistograma, DataGridView dtgfrecuencias)
         {
             int valorIntervalo = Convert.ToInt32(seleccion);
 
@@ -185,6 +182,10 @@ namespace TP_2.Entidades
                     //en el arreglo de frecuencias, en la posicion del indice sumo 1
                     frecuencias[indice]++;
                 }
+                if (indice == 5)
+                {
+                    frecuencias[indice-1]++;
+                }
 
 
             }
@@ -192,10 +193,10 @@ namespace TP_2.Entidades
 
 
 
-           //En esta lista cargo todas las lineas correspondientes a las frecuencias
-            List<double[]>  listaFrecuencias = new List<double[]>();
+            //En esta lista cargo todas las lineas correspondientes a las frecuencias
+            List<double[]> listaFrecuencias = new List<double[]>();
             int contadorFrecuencia = 0;
-            
+
             //serie con los valores de marcas de clase y las frecuencias correspondientes
             Series serieValores = new Series();
 
@@ -204,10 +205,10 @@ namespace TP_2.Entidades
             {
                 //Valor minimo del intervalo
                 double limiteInferior = minimo + (i * anchoDeSerie);
-                
+
                 //Valor Maximo del intervalo
-                double limiteSuperior = minimo + ((i + 1) * anchoDeSerie);
-                
+                double limiteSuperior = minimo + ((i + 1) * anchoDeSerie );
+
                 double marcaDeClase = (limiteInferior + limiteSuperior) / 2;
                 contadorFrecuencia += frecuencias[i];
 
@@ -216,19 +217,19 @@ namespace TP_2.Entidades
 
 
                 //Creo una lista con los valores que debo agregar a la tabla de frecuencias, es decir, intervalos desde hasta, F absoluta y Facumulada
-                double[] fila_frecuencia = {limiteInferior, limiteSuperior, frecuencias[i], contadorFrecuencia };
+                double[] fila_frecuencia = { limiteInferior, limiteSuperior, frecuencias[i], contadorFrecuencia };
                 listaFrecuencias.Add(fila_frecuencia);
 
             }
-            
-            
+
+
             //Cargar tabla de frecuencias - En este caso arme una Lista con lo que seria cada fila de la tabla, debo iterar esa lista y colocar cada elemento de forma individual
             //No puedo pasar la lista entera a la tabla porque son formatos distintos.
             dtgfrecuencias.Rows.Clear();
-            foreach(var valores in listaFrecuencias)
+            foreach (var valores in listaFrecuencias)
             {
                 DataGridViewRow filadtg = new DataGridViewRow();
-                foreach(var valor in valores)
+                foreach (var valor in valores)
                 {
                     filadtg.Cells.Add(new DataGridViewTextBoxCell { Value = valor });
                 }
@@ -251,7 +252,7 @@ namespace TP_2.Entidades
             }
 
 
-            
+
             serieValores.BorderWidth = 1;
             serieValores.BorderColor = Color.Black;
 
@@ -262,7 +263,7 @@ namespace TP_2.Entidades
 
             histograma.ChartAreas[0].AxisX.IsLabelAutoFit = false;
 
-            histograma .ChartAreas[0].AxisX.Title = "Valor";
+            histograma.ChartAreas[0].AxisX.Title = "Valor";
             histograma.ChartAreas[0].AxisY.Title = "Frecuencia";
 
             histograma.ChartAreas[0].AxisY.Minimum = 0;
@@ -279,16 +280,16 @@ namespace TP_2.Entidades
             histograma.Series["Series1"]["PointWidth"] = "1";
         }
 
-      
+
 
         //Validar el tamaño de una muestra
         public bool tamañoMuestra(int valor)
         {
-              
+
             if (valor <= 1000000)
             {
                 return true;
-                
+
             }
             else
             {
@@ -298,7 +299,7 @@ namespace TP_2.Entidades
 
 
         //Obtener la serie cargada en el datagridview
-        public List<double> ObtenerSerie(string columnName,DataGridView dtgseries)
+        public List<double> ObtenerSerie(string columnName, DataGridView dtgseries)
         {
             List<double> serie = new List<double>();
 
