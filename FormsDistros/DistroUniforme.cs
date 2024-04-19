@@ -144,7 +144,7 @@ namespace TP_2
 
                 {
                     string seleccion = cmbIntervalos.SelectedItem.ToString();
-                    funciones.GenerarHistograma(seleccion, serie, histogramaAB, pnlHistograma);
+                    funciones.GenerarHistograma(seleccion, serie, histogramaAB, pnlHistograma,dtgFrecuencias);
 
                 }
 

@@ -17,41 +17,60 @@ namespace TP_2.Entidades
     {
         
 
-        //Metodo de excel - Robadisimo de StackOverflow
+        //Metodo de excel
         public void ExportarDataGridViewExcel(DataGridView grd)
         {
             SaveFileDialog fichero = new SaveFileDialog();
+            //le defino la extension que quiero que tenga, en este caso excel
             fichero.Filter = "Excel (*.xls)|*.xls";
             if (fichero.ShowDialog() == DialogResult.OK)
             {
-                Microsoft.Office.Interop.Excel.Application aplicacion;
-                Workbook libros_trabajo;
-                Worksheet hoja_trabajo;
-                aplicacion = new Microsoft.Office.Interop.Excel.Application();
-                libros_trabajo = aplicacion.Workbooks.Add();
-                hoja_trabajo =
-                    (Worksheet)libros_trabajo.Worksheets.get_Item(1);
-                //Recorremos el DataGridView rellenando la hoja de trabajo
-                for (int i = 0; i < grd.Rows.Count - 1; i++)
+                Microsoft.Office.Interop.Excel.Application excelApp;
+                Workbook libro;
+                Worksheet hoja;
+                //Abrir Excel
+                excelApp = new Microsoft.Office.Interop.Excel.Application();
+
+                // Crear un nuevo libro de trabajo de Excel
+                libro = excelApp.Workbooks.Add();
+                hoja = (Worksheet)libro.Worksheets.get_Item(1);
+                //Poner Columnas en excel
+                for (int j = 1; j < grd.Columns.Count; j++)
                 {
-                    for (int j = 0; j < grd.Columns.Count; j++)
+                    hoja.Cells[1,j + 1] = grd.Columns[j].HeaderText;
+
+                }
+                // Copiar los datos desde el DataGridView a Excel
+                for (int i = 0; i < grd.Rows.Count; i++)
+                {
+                    for (int j = 1; j < grd.Columns.Count; j++)
                     {
-                        if (grd.Rows[i].Cells[j].Value != DBNull.Value)
+                        if (grd.Rows[i].Cells[j].Value != DBNull.Value && grd.Rows[i].Cells[j].Value != null)
                         {
-                            hoja_trabajo.Cells[i + 1, j + 1] = grd.Rows[i].Cells[j].Value?.ToString();
+                           
+                            //Si va por el false es porque no se pudo pasar a int y resulto ser el valor de serie
+                            double valor = Convert.ToDouble(grd.Rows[i].Cells[j].Value);
+                            hoja.Cells[i + 2, j + 1].NumberFormat = "0,0000"; // formato en 4 decimales
+                            hoja.Cells[i + 2, j + 1].Value = valor;
+                           
                         }
                         else
                         {
-                            hoja_trabajo.Cells[i + 1, j + 1] = null;
+                            hoja.Cells[i + 2, j + 1] = "";
                         }
+                       
                     }
                 }
-                libros_trabajo.SaveAs(fichero.FileName,
-                    XlFileFormat.xlWorkbookNormal);
-                libros_trabajo.Close(true);
-                aplicacion.Quit();
-                
+                //Guardar el archivo y respetar el formato
+                libro.SaveAs(fichero.FileName,XlFileFormat.xlWorkbookNormal);
+                //Cerrar
+                libro.Close(true);
+                excelApp.Quit();
             }
+
+
+
+
         }
 
         //Esta funcion basicamente se fija que 
@@ -139,7 +158,7 @@ namespace TP_2.Entidades
 
 
 
-        public void GenerarHistograma(string seleccion,List<double> serie , Chart histograma,Panel pnlHistograma)
+        public void GenerarHistograma(string seleccion,List<double> serie , Chart histograma,Panel pnlHistograma, DataGridView dtgfrecuencias)
         {
             int valorIntervalo = Convert.ToInt32(seleccion);
 
@@ -173,17 +192,49 @@ namespace TP_2.Entidades
 
 
 
+           //En esta lista cargo todas las lineas correspondientes a las frecuencias
+            List<double[]>  listaFrecuencias = new List<double[]>();
+            int contadorFrecuencia = 0;
+            
             //serie con los valores de marcas de clase y las frecuencias correspondientes
             Series serieValores = new Series();
+
+
             for (int i = 0; i < valorIntervalo; i++)
             {
+                //Valor minimo del intervalo
                 double limiteInferior = minimo + (i * anchoDeSerie);
+                
+                //Valor Maximo del intervalo
                 double limiteSuperior = minimo + ((i + 1) * anchoDeSerie);
+                
                 double marcaDeClase = (limiteInferior + limiteSuperior) / 2;
+                contadorFrecuencia += frecuencias[i];
 
                 serieValores.Points.AddXY(marcaDeClase, frecuencias[i]);
 
+
+
+                //Creo una lista con los valores que debo agregar a la tabla de frecuencias, es decir, intervalos desde hasta, F absoluta y Facumulada
+                double[] fila_frecuencia = {limiteInferior, limiteSuperior, frecuencias[i], contadorFrecuencia };
+                listaFrecuencias.Add(fila_frecuencia);
+
             }
+            
+            
+            //Cargar tabla de frecuencias - En este caso arme una Lista con lo que seria cada fila de la tabla, debo iterar esa lista y colocar cada elemento de forma individual
+            //No puedo pasar la lista entera a la tabla porque son formatos distintos.
+            dtgfrecuencias.Rows.Clear();
+            foreach(var valores in listaFrecuencias)
+            {
+                DataGridViewRow filadtg = new DataGridViewRow();
+                foreach(var valor in valores)
+                {
+                    filadtg.Cells.Add(new DataGridViewTextBoxCell { Value = valor });
+                }
+                dtgfrecuencias.Rows.Add(filadtg);
+            }
+
 
             // Verificar si el Chart ya existe
             if (histograma == null)
