@@ -74,30 +74,37 @@ namespace TP_2
             {
                 //Tengo que limpiar la coma del campo de carga para que no la reconozca como caracter al momento
                 //de validar si es entero o no 
-                string sinComaDecimal = valorLambda.Text.Replace(".", "");
-                if (string.IsNullOrWhiteSpace(sinComaDecimal))
+                
+                
+                
+
+               
+                if (string.IsNullOrWhiteSpace(valorLambda.Text.Replace("."," ")))
                 {
                     MessageBox.Show("!El valor de Lambda no puede quedar vacio¡");
                     return;
                 }
                 else
-                {
-                    double lambda = double.Parse(valorLambda.Text);
-                    for (int i = 0; i < dtgSerie.RowCount; i++)
-                    {
-                        double valorOriginal;
-                        if (dtgSerie.Rows[i].Cells[1].Value != null &&
-                            double.TryParse(dtgSerie.Rows[i].Cells[1].Value.ToString(), out valorOriginal))
+                {//Valido si puedo convertir el valor cargado a un double y lo devuelvo como lambda
+                   
+                    
+                        for (int i = 0; i < dtgSerie.RowCount; i++)
                         {
-                            //Calculo el valor segun la formula Exponencial
-                            double pseudo_expo = (-1 / lambda) * Math.Log(1 - valorOriginal);
-                            pseudo_expo = Math.Round(pseudo_expo, 4);
+                            double valorOriginal;
+                            if (dtgSerie.Rows[i].Cells[1].Value != null &&
+                                double.TryParse(dtgSerie.Rows[i].Cells[1].Value.ToString(), out valorOriginal))
+                            {
+                                //Calculo el valor segun la formula Exponencial
+                                double pseudo_expo = (-1 / Convert.ToDouble(valorLambda.Text) * Math.Log(1 - valorOriginal));
+                                pseudo_expo = Math.Round(pseudo_expo, 4);
 
-                            //Asignar el valor a la serie exponencial
-                            dtgSerie.Rows[i].Cells[2].Value = pseudo_expo;
-                        
+                                //Asignar el valor a la serie exponencial
+                                dtgSerie.Rows[i].Cells[2].Value = pseudo_expo;
+
+                            }
                         }
-                    }
+                    
+                        
                 }
             }
         }
@@ -118,7 +125,7 @@ namespace TP_2
             {
                 string seleccion = cmbIntervalos.SelectedItem.ToString();
 
-                funciones.GenerarHistograma(seleccion, serieExponencial, histogramaExponencial, pnlHistograma);
+                funciones.GenerarHistograma(seleccion, serieExponencial, histogramaExponencial, pnlHistograma,dtgFrecuencias);
 
 
             }

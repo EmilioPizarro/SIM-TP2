@@ -73,8 +73,8 @@ namespace TP_2
                 }
                 else
                 {
-                    double media = double.Parse(valorMedia.Text);
-                    double desviacion = double.Parse(valorDesviacion.Text);
+                    double media = Convert.ToDouble(valorMedia.Text);
+                    double desviacion = Convert.ToDouble(valorDesviacion.Text);
 
                     
                      for (int i = 0; i < dtgSerie.RowCount; i+=2)
@@ -135,7 +135,7 @@ namespace TP_2
                 if (cmbIntervalos.SelectedItem != null)
                 {
                     string seleccion = cmbIntervalos.SelectedItem.ToString();
-                    funciones.GenerarHistograma(seleccion, serieNormal, histogramaNormal, pnlHistograma);
+                    funciones.GenerarHistograma(seleccion, serieNormal, histogramaNormal, pnlHistograma,dtgFrecuencias);
             }
                 else
                 {
