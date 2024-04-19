@@ -129,7 +129,7 @@
             // valorMedia
             // 
             this.valorMedia.Location = new System.Drawing.Point(81, 104);
-            this.valorMedia.Mask = "0.00";
+            this.valorMedia.Mask = "999.9999";
             this.valorMedia.Name = "valorMedia";
             this.valorMedia.Size = new System.Drawing.Size(70, 20);
             this.valorMedia.TabIndex = 10;
@@ -139,7 +139,7 @@
             // valorDesviacion
             // 
             this.valorDesviacion.Location = new System.Drawing.Point(323, 104);
-            this.valorDesviacion.Mask = "0.00";
+            this.valorDesviacion.Mask = "999.9999";
             this.valorDesviacion.Name = "valorDesviacion";
             this.valorDesviacion.Size = new System.Drawing.Size(70, 20);
             this.valorDesviacion.TabIndex = 11;
