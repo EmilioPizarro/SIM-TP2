@@ -32,15 +32,15 @@ namespace TP_2.Entidades
                 libro = excelApp.Workbooks.Add();
                 hoja = (Worksheet)libro.Worksheets.get_Item(1);
                 //Poner Columnas en excel
-                for (int j = 1; j < grd.Columns.Count; j++)
+                for (int j = 0; j < grd.Columns.Count; j++)
                 {
-                    hoja.Cells[1, j + 1] = grd.Columns[j].HeaderText;
+                    hoja.Cells[1, j+1] = grd.Columns[j].HeaderText;
 
                 }
                 // Copiar los datos desde el DataGridView a Excel
                 for (int i = 0; i < grd.Rows.Count; i++)
                 {
-                    for (int j = 1; j < grd.Columns.Count; j++)
+                    for (int j = 0; j < grd.Columns.Count; j++)
                     {
                         if (grd.Rows[i].Cells[j].Value != DBNull.Value && grd.Rows[i].Cells[j].Value != null)
                         {
