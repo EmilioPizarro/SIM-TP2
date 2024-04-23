@@ -65,6 +65,7 @@ namespace TP_2
             else
             {
                 string mediaSinComa = valorMedia.Text.Replace(",", "");
+
                 string desviacionSinComa = valorDesviacion.Text.Replace(",", "");
                 if (string.IsNullOrWhiteSpace(mediaSinComa) || string.IsNullOrWhiteSpace(desviacionSinComa))
                 {
@@ -73,8 +74,12 @@ namespace TP_2
                 }
                 else
                 {
-                    double media = Convert.ToDouble(valorMedia.Text.Trim());
-                    double desviacion = Convert.ToDouble(valorDesviacion.Text.Trim());
+
+                    string mediaCompleta = valorMedia.Text.Replace(" ", "0");
+                    double media = Convert.ToDouble(mediaCompleta.Trim());
+
+                    string desviacionCompleta = valorDesviacion.Text.Replace(" ", "0");
+                    double desviacion = Convert.ToDouble(desviacionCompleta.Trim());
 
                     
                      for (int i = 0; i < dtgSerie.RowCount; i+=2)

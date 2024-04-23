@@ -154,7 +154,7 @@ namespace TP_2.Entidades
         }
 
 
-
+        //List<double> siempre refiere a la conversion en vector, de la columna del datagrid que me interesa utilizar , sea uniforme , exponencial o normal
         public void GenerarHistograma(string seleccion, List<double> serie, Chart histograma, Panel pnlHistograma, DataGridView dtgfrecuencias)
         {
             int valorIntervalo = Convert.ToInt32(seleccion);
@@ -162,7 +162,8 @@ namespace TP_2.Entidades
 
             double minimo = serie.Min();
             double maximo = serie.Max();
-            double anchoDeSerie = (maximo - minimo) / valorIntervalo;
+            double rango = maximo - minimo;
+            double anchoDeSerie = rango / valorIntervalo;
 
 
             // Calcular Frecuencia de aparicion 
@@ -170,11 +171,11 @@ namespace TP_2.Entidades
             // que tiene una longitud del tamaño de los intervalos , y en cada 
             // posicion aumenta en 1 cuando se da la aparicion de algun valor en el intervalo
             int[] frecuencias = new int[valorIntervalo];
-            foreach (double pseudoab in serie)
+            foreach (double pseudo in serie)
             {
 
                 //calculo el indice del intervalo
-                int indice = (int)Math.Floor((pseudoab - minimo) / anchoDeSerie);
+                int indice = (int)Math.Floor((pseudo - minimo) / anchoDeSerie);
                 //Compruebo que el indice este entre 0 y el valor maximo del intervalo para no irme 
                 //fuera del intervalo
                 if (indice >= 0 && indice < valorIntervalo)
@@ -182,7 +183,7 @@ namespace TP_2.Entidades
                     //en el arreglo de frecuencias, en la posicion del indice sumo 1
                     frecuencias[indice]++;
                 }
-                if (indice == 5)
+                if (indice == valorIntervalo)
                 {
                     frecuencias[indice-1]++;
                 }
@@ -200,16 +201,35 @@ namespace TP_2.Entidades
             //serie con los valores de marcas de clase y las frecuencias correspondientes
             Series serieValores = new Series();
 
-
+            double limiteSuperior;
             for (int i = 0; i < valorIntervalo; i++)
             {
                 //Valor minimo del intervalo
-                double limiteInferior = minimo + (i * anchoDeSerie);
 
-                //Valor Maximo del intervalo
-                double limiteSuperior = minimo + ((i + 1) * anchoDeSerie );
+                //El calculo esta planteado ya que tiene que ser iterativo, entonces se trabaja sobre los minimos de los intervalos adyacentes
+                double limiteInferior = minimo + (i * anchoDeSerie);
+                limiteInferior = Math.Round(limiteInferior, 4);
+
+                //Si el i = valorIntervalo es porque estoy en el intervalo final
+                //por lo que el limitefinal es el maximo de la serie.
+                if (i == valorIntervalo)
+                {
+                     limiteSuperior = maximo;
+                }
+                else
+                {
+                    //Valor Maximo del intervalo
+                    limiteSuperior = minimo + ((i + 1) * anchoDeSerie);
+                    limiteSuperior = Math.Round(limiteSuperior, 4);
+                }
+                
+                
+
+
 
                 double marcaDeClase = (limiteInferior + limiteSuperior) / 2;
+                marcaDeClase = Math.Round(marcaDeClase, 4);
+
                 contadorFrecuencia += frecuencias[i];
 
                 serieValores.Points.AddXY(marcaDeClase, frecuencias[i]);
