@@ -90,9 +90,9 @@ namespace TP_2
                             if (dtgSerie.Rows[i].Cells[1].Value != null &&
                                 double.TryParse(dtgSerie.Rows[i].Cells[1].Value.ToString(), out valorOriginal))
                             {
-                                
-                                
-                                double lambda = double.Parse(valorLambda.Text.Trim());
+
+                                string lambdaCompleto = valorLambda.Text.Replace(" ", "0");
+                                double lambda = Convert.ToDouble(lambdaCompleto);
                                 double pseudo_expo = - (1 / lambda) * Math.Log(1 - valorOriginal);
                                 pseudo_expo = Math.Round(pseudo_expo, 4);
 
