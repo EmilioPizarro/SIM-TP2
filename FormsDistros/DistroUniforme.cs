@@ -161,7 +161,7 @@ namespace TP_2
         private void btnExcel_Click(object sender, EventArgs e)
         {
             //generar un excel 
-            funciones.ExportarDataGridViewExcel(dtgSerie);
+            funciones.ExportarDataGridViewExcel(dtgFrecuencias);
             
         }
 
